@@ -226,8 +226,7 @@ def get_playlists(token):
 
         if (not daylist_playlist):
             if (not next_page):
-                print("No daylist playlist found. Make sure you have added 'daylist' in your Spotify library.")
-                return no_update, no_update
+                return html.P("Daylist could not be found in your Spotify Playlists. Make sure to save it to your library (plus sign button)"), no_update
             response = requests.get(next_page, headers=headers)
         
     try:
@@ -248,7 +247,8 @@ def get_playlists(token):
 
     info_div = html.Div([
         html.H3(f"Daylist: {daylist_title.title()}"),
-        html.P(f"{daylist_desc}")
+        html.P(f"{daylist_desc}"),
+        html.A("View your daylist on Spotify", href=daylist_playlist['external_urls']['spotify'], target="_blank")
     ])
 
     pic_div = html.Img(src=img_url, style={'width': '100%', 'height': 'auto', 'maxheight': '600px', 'margin':'10px'})
