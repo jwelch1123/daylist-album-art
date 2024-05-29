@@ -1,0 +1,6 @@
+gunicorn
+requests
+python-dotenv
+dash
+dash-bootstrap-components
+openai
